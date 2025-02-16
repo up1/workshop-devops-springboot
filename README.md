@@ -1,4 +1,5 @@
 # Workshop :: DevSecOps with Spring Boot
+* Java 21
 * Spring Boot 3.4
 * MySQL Database
 * Testing
