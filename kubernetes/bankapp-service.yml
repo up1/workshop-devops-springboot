@@ -7,6 +7,7 @@ metadata:
     app: bankapp
 spec:
   type: NodePort
+  # type: LoadBalancer  # working with ingress-nginx
   selector:
     app: bankapp
   ports:
