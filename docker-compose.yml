@@ -1,6 +1,6 @@
 services:
   banking:
-    image: somkiat/banking:1.0
+    image: somkiat/bankapp:1.0
     build:
       context: ./banking
       dockerfile: Dockerfile
