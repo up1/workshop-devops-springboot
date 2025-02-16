@@ -21,12 +21,12 @@ public class BankController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping("/dashboard.html")
     public String dashboard(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Account account = accountService.findAccountByUsername(username);
         model.addAttribute("account", account);
-        return "dashboard";
+        return "dashboard.html";
     }
 
     @GetMapping("/register")
@@ -55,7 +55,7 @@ public class BankController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Account account = accountService.findAccountByUsername(username);
         accountService.deposit(account, amount);
-        return "redirect:/dashboard";
+        return "redirect:/dashboard.html";
     }
 
     @PostMapping("/withdraw")
@@ -68,10 +68,10 @@ public class BankController {
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("account", account);
-            return "dashboard";
+            return "dashboard.html";
         }
 
-        return "redirect:/dashboard";
+        return "redirect:/dashboard.html";
     }
 
     @GetMapping("/transactions")
@@ -92,10 +92,10 @@ public class BankController {
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("account", fromAccount);
-            return "dashboard";
+            return "dashboard.html";
         }
 
-        return "redirect:/dashboard";
+        return "redirect:/dashboard.html";
     }
 
 }

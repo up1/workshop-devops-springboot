@@ -4,6 +4,7 @@ import com.example.banking.model.Account;
 import com.example.banking.model.Transaction;
 import com.example.banking.repository.AccountRepository;
 import com.example.banking.repository.TransactionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,6 +35,7 @@ public class AccountService implements UserDetailsService {
         return accountRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Account not found"));
     }
 
+    @Transactional
     public Account registerAccount(String username, String password) {
         if (accountRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("Username already exists");
@@ -47,6 +49,7 @@ public class AccountService implements UserDetailsService {
     }
 
 
+    @Transactional
     public void deposit(Account account, BigDecimal amount) {
         account.setBalance(account.getBalance().add(amount));
         accountRepository.save(account);
@@ -60,6 +63,7 @@ public class AccountService implements UserDetailsService {
         transactionRepository.save(transaction);
     }
 
+    @Transactional
     public void withdraw(Account account, BigDecimal amount) {
         if (account.getBalance().compareTo(amount) < 0) {
             throw new RuntimeException("Insufficient funds");
@@ -81,8 +85,8 @@ public class AccountService implements UserDetailsService {
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Account account = findAccountByUsername(username);
         if (account == null) {
             throw new UsernameNotFoundException("Username or Password not found");
@@ -99,6 +103,7 @@ public class AccountService implements UserDetailsService {
         return List.of(new SimpleGrantedAuthority("USER"));
     }
 
+    @Transactional
     public void transferAmount(Account fromAccount, String toUsername, BigDecimal amount) {
         if (fromAccount.getBalance().compareTo(amount) < 0) {
             throw new RuntimeException("Insufficient funds");

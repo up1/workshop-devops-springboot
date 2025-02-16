@@ -1,8 +1,6 @@
 package com.example.banking.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,7 +15,7 @@ public class Transaction {
     private String type;
     private LocalDateTime timestamp;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
 
