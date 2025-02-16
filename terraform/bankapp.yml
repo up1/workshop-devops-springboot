@@ -1,0 +1,3 @@
+runcmd:
+  - curl https://raw.githubusercontent.com/up1/workshop-devops-springboot/refs/heads/main/docker-compose.yml -O
+  - docker compose up -d
