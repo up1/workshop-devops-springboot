@@ -25,3 +25,13 @@ services:
       interval: 2s
       timeout: 3s
       retries: 5
+  sonarscanner_banking:
+    image: sonarsource/sonar-scanner-cli
+    environment:
+      - SONAR_HOST_URL=http://174.138.24.226:9000
+      - SONAR_TOKEN=sqa_9d166946ac924b1b0852c8c3cac86d7ab0cb416c
+      - SONAR_LOGIN=admin
+      - SONAR_PASSWORD=xitgmLwmp
+      - SONAR_PROJECT_BASE_DIR=/app
+    volumes:
+      - ./banking:/app
