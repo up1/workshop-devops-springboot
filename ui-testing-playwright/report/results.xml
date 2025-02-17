@@ -1,0 +1,12 @@
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="2.1617250000000006">
+<testsuite name="example.spec.ts" timestamp="2025-02-17T16:33:00.673Z" hostname="chromium" tests="2" failures="0" skipped="0" time="2.913" errors="0">
+<testcase name="has title" classname="example.spec.ts" time="1.26">
+</testcase>
+<testcase name="get started link" classname="example.spec.ts" time="1.653">
+</testcase>
+</testsuite>
+<testsuite name="register.and-login.spec.ts" timestamp="2025-02-17T16:33:00.673Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.31" errors="0">
+<testcase name="Success with register and login" classname="register.and-login.spec.ts" time="1.31">
+</testcase>
+</testsuite>
+</testsuites>

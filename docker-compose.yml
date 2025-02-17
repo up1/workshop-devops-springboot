@@ -40,3 +40,9 @@ services:
     tty: true
     volumes:
       - ./api-testing-report:/etc/newman/newman
+  
+  ui_testing_playwright:
+    build: ./ui-testing-playwright
+    tty: true
+    volumes:
+      - ./ui-testing-playwright-report:/app/report
