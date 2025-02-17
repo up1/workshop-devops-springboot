@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "1ed75cd1-9a0f-4d52-91e0-61bef2c6dcc9",
+		"name": "day01",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/devops~821359a8-c106-4e68-a019-088c66249632/collection/1453931-1ed75cd1-9a0f-4d52-91e0-61bef2c6dcc9?action=share&source=collection_link&creator=1453931"
+	},
+	"item": [
+		{
+			"name": "https://jsonplaceholder.typicode.com/users/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// The JSON schema to validate the response body against",
+							"const schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"id\": { \"type\": \"number\" },",
+							"        \"name\": { \"type\": \"string\" },",
+							"        \"username\": { \"type\": \"string\" },",
+							"        \"email\": { \"type\": \"string\", \"format\": \"email\" },",
+							"        \"address\": {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"street\": { \"type\": \"string\" },",
+							"                \"suite\": { \"type\": \"string\" },",
+							"                \"city\": { \"type\": \"string\" },",
+							"                \"zipcode\": { \"type\": \"string\" },",
+							"                \"geo\": {",
+							"                    \"type\": \"object\",",
+							"                    \"properties\": {",
+							"                        \"lat\": { \"type\": \"string\" },",
+							"                        \"lng\": { \"type\": \"string\" }",
+							"                    },",
+							"                    \"required\": [\"lat\", \"lng\"]",
+							"                }",
+							"            },",
+							"            \"required\": [\"street\", \"suite\", \"city\", \"zipcode\", \"geo\"]",
+							"        },",
+							"        \"phone\": { \"type\": \"string\" },",
+							"        \"website\": { \"type\": \"string\", \"format\": \"uri\" },",
+							"        \"company\": {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"name\": { \"type\": \"string\" },",
+							"                \"catchPhrase\": { \"type\": \"string\" },",
+							"                \"bs\": { \"type\": \"string\" }",
+							"            },",
+							"            \"required\": [\"name\", \"catchPhrase\", \"bs\"]",
+							"        }",
+							"    },",
+							"    \"required\": [\"id\", \"name\", \"username\", \"email\", \"address\", \"phone\", \"website\", \"company\"]",
+							"};",
+							"",
+							"// Perform the JSON schema validation",
+							"pm.test('Response body matches the schema', function() {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://jsonplaceholder.typicode.com/users/1"
+			},
+			"response": []
+		}
+	]
+}

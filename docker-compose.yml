@@ -35,3 +35,8 @@ services:
       - SONAR_PROJECT_BASE_DIR=/app
     volumes:
       - ./banking:/app
+  api_testing:
+    build: ./api-testing
+    tty: true
+    volumes:
+      - ./api-testing-report:/etc/newman/newman
