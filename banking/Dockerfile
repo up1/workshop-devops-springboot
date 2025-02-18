@@ -12,7 +12,7 @@ WORKDIR /app
 COPY . /app
 
 # Build application and skip test cases
-RUN mvn clean install -DskipTests=true
+RUN --mount=type=cache,target=/root/.m2,rw  mvn clean install -DskipTests=true
 
 #--------------------------------------
 # Stage 2
