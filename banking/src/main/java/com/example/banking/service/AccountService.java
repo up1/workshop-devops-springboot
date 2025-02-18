@@ -25,11 +25,13 @@ public class AccountService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
+    private final TransactionRepository transactionRepository;
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+    public AccountService(AccountRepository accountRepository, TransactionRepository transactionRepository) {
+        this.accountRepository = accountRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
     public Account findAccountByUsername(String username) {
         return accountRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Account not found"));
