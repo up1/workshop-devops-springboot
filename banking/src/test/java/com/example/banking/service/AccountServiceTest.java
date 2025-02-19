@@ -46,7 +46,7 @@ class AccountServiceTest {
         accountService.transferAmount(fromAccount, targetAccountName, BigDecimal.valueOf(1000));
 
         // Assert
-        verify(accountRepository, times(3)).save(any(Account.class));
+        verify(accountRepository, times(2)).save(any(Account.class));
         verify(transactionRepository, times(2)).save(any(Transaction.class));
     }
 }
